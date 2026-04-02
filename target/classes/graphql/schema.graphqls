@@ -1,0 +1,116 @@
+# ─────────────────────────────────────────────
+# GraphQL Schema — Travel App Orchestrator
+# Covers: User, Trip, Booking, Notification
+# ─────────────────────────────────────────────
+
+# ── Root Operations ────────────────────────────
+
+type Query {
+    # User
+    me(userId: ID!): UserProfile
+
+    # Trips
+    trip(tripId: ID!): Trip
+    myTrips(userId: ID!): [Trip!]!
+
+    # Bookings
+    booking(bookingId: ID!): Booking
+    bookingsByTrip(tripId: ID!): [Booking!]!
+    bookingsByUser(userId: ID!): [Booking!]!
+
+    # Health
+    health: String
+}
+
+type Mutation {
+    # User Auth
+    register(input: RegisterInput!): RegisterResponse!
+    login(input: LoginInput!): AuthResponse!
+
+    # Trips
+    createTrip(input: CreateTripInput!): Trip!
+
+    # Bookings
+    createBooking(input: CreateBookingInput!): Booking!
+}
+
+# ── User Types ─────────────────────────────────
+
+input RegisterInput {
+    firstName: String!
+    lastName:  String
+    emailId:   String!
+    password:  String!
+    mobileNumber: String
+}
+
+input LoginInput {
+    email:    String!
+    password: String!
+}
+
+type AuthResponse {
+    success: Boolean!
+    message: String!
+    token:   String
+    userId:  String
+}
+
+type RegisterResponse {
+    success: Boolean!
+    message: String!
+}
+
+type UserProfile {
+    userId:       String!
+    firstName:    String!
+    lastName:     String
+    emailId:      String!
+    mobileNumber: String
+}
+
+# ── Trip Types ─────────────────────────────────
+
+input CreateTripInput {
+    name:        String!
+    destination: String!
+    userId:      String!
+    startDate:   String
+    endDate:     String
+}
+
+type Trip {
+    id:          String!
+    name:        String!
+    destination: String!
+    userId:      String!
+    startDate:   String
+    endDate:     String
+    createdAt:   String
+    bookings:    [Booking!]
+}
+
+# ── Booking Types ──────────────────────────────
+
+input CreateBookingInput {
+    tripId:  String!
+    userId:  String!
+    type:    BookingType!
+    details: String
+}
+
+enum BookingType {
+    HOTEL
+    FLIGHT
+    ACTIVITY
+}
+
+type Booking {
+    id:        String!
+    tripId:    String!
+    userId:    String!
+    type:      String!
+    details:   String
+    status:    String!
+    createdAt: String
+}
