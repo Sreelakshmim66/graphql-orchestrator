@@ -36,7 +36,7 @@ public class GraphQlResolver {
 
     @MutationMapping
     public RegisterResponse register(@Argument RegisterInput input) {
-        log.debug("GraphQL register → email={}", input.getEmailId());
+        log.debug("GraphQL register → email={}", input.getEmail());
         return userService.register(input);
     }
 

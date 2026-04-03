@@ -17,7 +17,7 @@ public class OrchestratorDtos {
     @Data public static class RegisterInput {
         private String firstName;
         private String lastName;
-        private String emailId;
+        private String email;
         private String password;
         private String mobileNumber;
     }
@@ -46,7 +46,7 @@ public class OrchestratorDtos {
         private String userId;
         private String firstName;
         private String lastName;
-        private String emailId;
+        private String email;
         private String mobileNumber;
     }
 
@@ -61,7 +61,7 @@ public class OrchestratorDtos {
     public static class UserRegisterBody {
         private String firstName;
         private String lastName;
-        private String emailId;
+        private String email;
         private String password;
         private String mobileNumber;
     }

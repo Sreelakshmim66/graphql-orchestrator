@@ -20,7 +20,7 @@ public class UserService {
         UserRegisterBody body = new UserRegisterBody(
                 input.getFirstName(),
                 input.getLastName(),
-                input.getEmailId(),
+                input.getEmail(),
                 input.getPassword(),
                 input.getMobileNumber()
         );

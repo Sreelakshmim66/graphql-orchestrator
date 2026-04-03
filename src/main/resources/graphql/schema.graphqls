@@ -39,7 +39,7 @@ type Mutation {
 input RegisterInput {
     firstName: String!
     lastName:  String
-    emailId:   String!
+    email:   String!
     password:  String!
     mobileNumber: String
 }
@@ -65,7 +65,7 @@ type UserProfile {
     userId:       String!
     firstName:    String!
     lastName:     String
-    emailId:      String!
+    email:      String!
     mobileNumber: String
 }
 
