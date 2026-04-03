@@ -72,6 +72,12 @@ public class GraphQlResolver {
         return tripService.getTripsByUser(userId, token);
     }
 
+    @QueryMapping
+    public SearchTripsResponse searchTrips(@Argument SearchTripsInput input, DataFetchingEnvironment env) {
+        String token = extractToken(env);
+        return tripService.searchTrips(input, token);
+    }
+
     @MutationMapping
     public Trip createTrip(@Argument CreateTripInput input, DataFetchingEnvironment env) {
         String token = extractToken(env);

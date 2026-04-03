@@ -97,6 +97,25 @@ public class OrchestratorDtos {
         private java.util.List<Booking> bookings;
     }
 
+    @Data public static class SearchTripsInput {
+        private String destination;
+        private String startDate;
+        private String endDate;
+    }
+
+    @Data @AllArgsConstructor @NoArgsConstructor
+    public static class InventoryItem {
+        private String hotelId;
+        private String hotelName;
+        private double price;
+        private String photoUrl;
+    }
+
+    @Data @AllArgsConstructor @NoArgsConstructor
+    public static class SearchTripsResponse {
+        private java.util.List<InventoryItem> inventories;
+    }
+
     // ═══════════════════════════════════════════════
     // BOOKING  (mirrors booking-service REST contracts)
     // ═══════════════════════════════════════════════

@@ -35,6 +35,15 @@ public class TripService {
         }
     }
 
+    public SearchTripsResponse searchTrips(SearchTripsInput input, String jwtToken) {
+        try {
+            return discovery.postWithToken(TRIP_SERVICE, "/api/trips/searchTrips", input, jwtToken, SearchTripsResponse.class);
+        } catch (RuntimeException e) {
+            log.error("searchTrips error: {}", e.getMessage());
+            throw new RuntimeException("Failed to search trips: " + e.getMessage());
+        }
+    }
+
     public List<Trip> getTripsByUser(String userId, String jwtToken) {
         try {
             // Use raw WebClient for typed List response

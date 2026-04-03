@@ -12,6 +12,7 @@ type Query {
     # Trips
     trip(tripId: ID!): Trip
     myTrips(userId: ID!): [Trip!]!
+    searchTrips(input: SearchTripsInput!): SearchTripsResponse!
 
     # Bookings
     booking(bookingId: ID!): Booking
@@ -88,6 +89,25 @@ type Trip {
     endDate:     String
     createdAt:   String
     bookings:    [Booking!]
+}
+
+# ── Search Types ───────────────────────────────
+
+input SearchTripsInput {
+    destination: String!
+    startDate:   String
+    endDate:     String
+}
+
+type InventoryItem {
+    hotelId:   String
+    hotelName: String
+    price:     Float
+    photoUrl:  String
+}
+
+type SearchTripsResponse {
+    inventories: [InventoryItem!]!
 }
 
 # ── Booking Types ──────────────────────────────
