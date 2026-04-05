@@ -19,7 +19,25 @@ public class TripService {
 
     public Trip createTrip(CreateTripInput input, String jwtToken) {
         try {
-            return discovery.postWithToken(TRIP_SERVICE, "/api/trips", input, jwtToken, Trip.class);
+            // trip-service expects {hotelName, hotelId, userId, startDate, endDate}
+            TripCreateBody body = new TripCreateBody(
+                    input.getName(),
+                    input.getDestination(),
+                    input.getUserId(),
+                    input.getStartDate(),
+                    input.getEndDate()
+            );
+            TripCreateResponse resp = discovery.postWithToken(
+                    TRIP_SERVICE, "/api/trips/createTrip", body, jwtToken, TripCreateResponse.class);
+            // trip-service only returns {tripId}; build the Trip from input + returned id
+            Trip trip = new Trip();
+            trip.setTripId(resp.getTripId());
+            trip.setName(input.getName());
+            trip.setDestination(input.getDestination());
+            trip.setUserId(input.getUserId());
+            trip.setStartDate(input.getStartDate());
+            trip.setEndDate(input.getEndDate());
+            return trip;
         } catch (RuntimeException e) {
             log.error("createTrip error: {}", e.getMessage());
             throw new RuntimeException("Failed to create trip: " + e.getMessage());

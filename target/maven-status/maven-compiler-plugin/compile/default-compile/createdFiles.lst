@@ -1,6 +1,8 @@
 com/orchestrator/service/UserService.class
+com/orchestrator/dto/OrchestratorDtos$SearchTripsResponse.class
 com/orchestrator/GraphqlOrchestratorApplication.class
 com/orchestrator/dto/OrchestratorDtos$Booking.class
+com/orchestrator/dto/OrchestratorDtos$SearchTripsInput.class
 com/orchestrator/filter/JwtGraphQlInterceptor.class
 com/orchestrator/service/BookingService$2.class
 com/orchestrator/resolver/GraphQlResolver.class
@@ -12,6 +14,7 @@ com/orchestrator/dto/OrchestratorDtos$CreateBookingInput.class
 com/orchestrator/dto/OrchestratorDtos$AuthResponse.class
 com/orchestrator/service/BookingService.class
 com/orchestrator/dto/OrchestratorDtos.class
+com/orchestrator/dto/OrchestratorDtos$InventoryItem.class
 com/orchestrator/dto/OrchestratorDtos$UserLoginResponse.class
 com/orchestrator/service/TripService.class
 com/orchestrator/dto/OrchestratorDtos$LoginInput.class

@@ -85,9 +85,25 @@ public class OrchestratorDtos {
         private String endDate;
     }
 
+    // Internal body sent to trip-service POST /api/trips/createTrip
+    @Data @AllArgsConstructor @NoArgsConstructor
+    public static class TripCreateBody {
+        private String hotelName;   // mapped from CreateTripInput.name
+        private String hotelId;     // mapped from CreateTripInput.destination
+        private String userId;
+        private String startDate;
+        private String endDate;
+    }
+
+    // trip-service createTrip only returns the new trip's ID
+    @Data @NoArgsConstructor
+    public static class TripCreateResponse {
+        private String tripId;
+    }
+
     @Data @AllArgsConstructor @NoArgsConstructor
     public static class Trip {
-        private String id;
+        private String tripId;
         private String name;
         private String destination;
         private String userId;
@@ -120,20 +136,24 @@ public class OrchestratorDtos {
     // BOOKING  (mirrors booking-service REST contracts)
     // ═══════════════════════════════════════════════
 
+    // Internal body sent to booking-service POST /api/bookings/completeBooking
+    @Data @AllArgsConstructor @NoArgsConstructor
+    public static class BookingCreateBody {
+        private String tripId;
+        private String userId;
+        private String clientIp;
+    }
+
     @Data public static class CreateBookingInput {
         private String tripId;
         private String userId;
-        private String type;   // HOTEL | FLIGHT | ACTIVITY
-        private String details;
     }
 
     @Data @AllArgsConstructor @NoArgsConstructor
     public static class Booking {
-        private String id;
+        private String bookingId;
         private String tripId;
         private String userId;
-        private String type;
-        private String details;
         private String status;
         private String createdAt;
     }

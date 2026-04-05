@@ -19,7 +19,9 @@ public class BookingService {
 
     public Booking createBooking(CreateBookingInput input, String jwtToken) {
         try {
-            return discovery.postWithToken(BOOKING_SERVICE, "/api/bookings", input, jwtToken, Booking.class);
+            BookingCreateBody body = new BookingCreateBody(input.getTripId(), input.getUserId(), null);
+            return discovery.postWithToken(
+                    BOOKING_SERVICE, "/api/bookings/completeBooking", body, jwtToken, Booking.class);
         } catch (RuntimeException e) {
             log.error("createBooking error: {}", e.getMessage());
             throw new RuntimeException("Failed to create booking: " + e.getMessage());

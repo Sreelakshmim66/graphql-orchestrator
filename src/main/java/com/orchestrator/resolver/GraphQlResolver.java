@@ -121,7 +121,7 @@ public class GraphQlResolver {
     @SchemaMapping(typeName = "Trip", field = "bookings")
     public List<Booking> bookingsForTrip(Trip trip, DataFetchingEnvironment env) {
         String token = extractToken(env);
-        return bookingService.getBookingsByTrip(trip.getId(), token);
+        return bookingService.getBookingsByTrip(trip.getTripId(), token);
     }
 
     // ════════════════════════════════════════════
