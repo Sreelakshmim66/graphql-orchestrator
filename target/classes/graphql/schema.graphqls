@@ -81,7 +81,7 @@ input CreateTripInput {
 }
 
 type Trip {
-    id:          String!
+    tripId:      String!
     name:        String!
     destination: String!
     userId:      String!
@@ -113,24 +113,14 @@ type SearchTripsResponse {
 # ── Booking Types ──────────────────────────────
 
 input CreateBookingInput {
-    tripId:  String!
-    userId:  String!
-    type:    BookingType!
-    details: String
-}
-
-enum BookingType {
-    HOTEL
-    FLIGHT
-    ACTIVITY
+    tripId: String!
+    userId: String!
 }
 
 type Booking {
-    id:        String!
+    bookingId: String!
     tripId:    String!
     userId:    String!
-    type:      String!
-    details:   String
     status:    String!
     createdAt: String
 }
