@@ -1,4 +1,5 @@
 com/orchestrator/dto/OrchestratorDtos$TripCreateBody.class
+com/orchestrator/service/NotificationService.class
 com/orchestrator/service/UserService.class
 com/orchestrator/dto/OrchestratorDtos$SearchTripsResponse.class
 com/orchestrator/GraphqlOrchestratorApplication.class
@@ -10,6 +11,7 @@ com/orchestrator/resolver/GraphQlResolver.class
 com/orchestrator/dto/OrchestratorDtos$BookingCreateBody.class
 com/orchestrator/config/OrchestratorConfig.class
 com/orchestrator/dto/OrchestratorDtos$UserRegisterBody.class
+com/orchestrator/dto/OrchestratorDtos$NotificationResponse.class
 com/orchestrator/dto/OrchestratorDtos$Trip.class
 com/orchestrator/dto/OrchestratorDtos$RegisterInput.class
 com/orchestrator/dto/OrchestratorDtos$CreateBookingInput.class
@@ -18,6 +20,7 @@ com/orchestrator/service/BookingService.class
 com/orchestrator/dto/OrchestratorDtos.class
 com/orchestrator/dto/OrchestratorDtos$InventoryItem.class
 com/orchestrator/dto/OrchestratorDtos$UserLoginResponse.class
+com/orchestrator/dto/OrchestratorDtos$NotificationRequestBody.class
 com/orchestrator/dto/OrchestratorDtos$TripCreateResponse.class
 com/orchestrator/service/TripService.class
 com/orchestrator/dto/OrchestratorDtos$LoginInput.class

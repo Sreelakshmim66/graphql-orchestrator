@@ -16,16 +16,32 @@ public class BookingService {
     private static final String BOOKING_SERVICE = "BOOKING-SERVICE"; // Eureka name
 
     private final ServiceDiscoveryClient discovery;
+    private final UserService userService;
+    private final NotificationService notificationService;
 
     public Booking createBooking(CreateBookingInput input, String jwtToken) {
+        Booking booking;
         try {
             BookingCreateBody body = new BookingCreateBody(input.getTripId(), input.getUserId(), null);
-            return discovery.postWithToken(
+            booking = discovery.postWithToken(
                     BOOKING_SERVICE, "/api/bookings/completeBooking", body, jwtToken, Booking.class);
         } catch (RuntimeException e) {
             log.error("createBooking error: {}", e.getMessage());
             throw new RuntimeException("Failed to create booking: " + e.getMessage());
         }
+
+        // Fire notification after successful booking
+        try {
+            UserProfile user = userService.getProfile(input.getUserId(), jwtToken);
+            String userName  = user != null ? user.getFirstName() + " " + (user.getLastName() != null ? user.getLastName() : "") : input.getUserId();
+            String userEmail = user != null ? user.getEmail() : null;
+            String message   = "Your booking " + booking.getBookingId() + " for trip " + booking.getTripId() + " has been confirmed.";
+            notificationService.sendNotification(booking.getBookingId(), userName.trim(), userEmail, message);
+        } catch (RuntimeException e) {
+            log.warn("Notification failed for bookingId={}: {}", booking.getBookingId(), e.getMessage());
+        }
+
+        return booking;
     }
 
     public Booking getBookingById(String bookingId, String jwtToken) {

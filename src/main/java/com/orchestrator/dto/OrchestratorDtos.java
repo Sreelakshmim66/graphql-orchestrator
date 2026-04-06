@@ -157,4 +157,25 @@ public class OrchestratorDtos {
         private String status;
         private String createdAt;
     }
+
+    // ═══════════════════════════════════════════════
+    // NOTIFICATION  (mirrors notification-service REST contracts)
+    // ═══════════════════════════════════════════════
+
+    @Data @AllArgsConstructor @NoArgsConstructor
+    public static class NotificationRequestBody {
+        private String itinNumber;
+        private String userName;
+        private String userEmail;
+        private String message;
+    }
+
+    @Data @NoArgsConstructor
+    public static class NotificationResponse {
+        private String itinNumber;
+        private String userName;
+        private String userEmail;
+        private String message;
+        private String createdAt;
+    }
 }
